@@ -62,7 +62,7 @@ const CustomDrawerContent = props => {
             marginBottom: dimens.big,
             marginTop: dimens.big,
           }}>
-          Halo, Admin
+          Halo, Admin Griya Depo
         </Title>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
