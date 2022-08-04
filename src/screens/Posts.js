@@ -18,9 +18,6 @@ import {
 } from 'react-native';
 import {Card, Chip, Paragraph} from 'react-native-paper';
 import dayjs from 'dayjs';
-import {CompositeScreenProps} from '@react-navigation/native';
-import {MaterialBottomTabScreenProps} from '@react-navigation/material-bottom-tabs';
-import {StackScreenProps} from '@react-navigation/stack';
 import {useIsFocused} from '@react-navigation/core';
 import {apiGet} from '../utils';
 
@@ -70,7 +67,7 @@ export const Posts = ({navigation}) => {
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {isLoading || isRefreshing ? (
-          <SkeletonLoading />
+          <SkeletonLoading type="content" />
         ) : listData.length < 1 ? (
           <EmptyData />
         ) : (
@@ -83,7 +80,7 @@ export const Posts = ({navigation}) => {
                   key={index}
                   item={item}
                   onPress={() => {
-                    navigation.navigate('');
+                    navigation.navigate('PostDetail', {id: item.id});
                   }}
                 />
               );
