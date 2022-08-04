@@ -3,7 +3,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {getLocalStorage} from '../utils';
 import {AuthContext} from '../context/AuthContext';
-import {Login, PostDetail, AddPost} from '../screens';
+import {
+  Login,
+  PostDetail,
+  AddPost,
+  CategoryDetail,
+  AddCategory,
+} from '../screens';
 import {AdminDrawer} from './AdminDrawer';
 
 const AppStack = createStackNavigator();
@@ -42,7 +48,9 @@ const AppRouter = () => {
             {/* Admin Stack */}
             <AppStack.Screen name="AdminDrawer" component={AdminDrawer} />
             <AppStack.Screen name="PostDetail" component={PostDetail} />
+            <AppStack.Screen name="CategoryDetail" component={CategoryDetail} />
             <AppStack.Screen name="AddPost" component={AddPost} />
+            <AppStack.Screen name="AddCategory" component={AddCategory} />
           </>
         ) : (
           <AppStack.Screen name="Login" component={Login} />

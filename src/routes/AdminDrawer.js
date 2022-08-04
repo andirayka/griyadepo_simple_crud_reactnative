@@ -9,7 +9,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {Title} from 'react-native-paper';
 import {dimens} from '../constants';
 import {AuthContext} from '../context/AuthContext';
-import {Posts} from '../screens';
+import {Categories, Posts} from '../screens';
 
 const DrawerContainer = createDrawerNavigator();
 
@@ -38,7 +38,7 @@ export const AdminDrawer = () => {
       />
       <DrawerContainer.Screen
         name="Categories"
-        component={Posts}
+        component={Categories}
         options={{
           drawerIcon: () => (
             <MaterialCommunityIcons color="black" name="group" size={26} />

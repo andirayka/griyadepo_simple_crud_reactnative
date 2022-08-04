@@ -1,13 +1,9 @@
-import {dimens} from '@constants';
-import React, {FC} from 'react';
+import {dimens} from '../../constants';
+import React from 'react';
 import {Linking, TouchableOpacity, View} from 'react-native';
 import {Caption, Paragraph} from 'react-native-paper';
 
-export const CardLabelValue: FC<{
-  label: string;
-  value: string;
-  isValueLink?: boolean;
-}> = ({label, value, isValueLink}) => {
+export const CardLabelValue = ({label, value, isValueLink}) => {
   return (
     <View style={{marginTop: dimens.medium}}>
       <Caption style={{fontSize: dimens.standard}}>{label}</Caption>

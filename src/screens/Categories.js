@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
+  CardKeyValue,
   // CardKeyValue,
   EmptyData,
   FABList,
@@ -21,7 +22,7 @@ import dayjs from 'dayjs';
 import {useIsFocused} from '@react-navigation/core';
 import {apiGet} from '../utils';
 
-export const Posts = ({navigation}) => {
+export const Categories = ({navigation}) => {
   const [listData, setListData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -32,7 +33,7 @@ export const Posts = ({navigation}) => {
 
     const getInitialData = async () => {
       const {data} = await apiGet({
-        url: 'post/get-all',
+        url: 'category/get-all',
         params: {},
       });
 
@@ -59,7 +60,7 @@ export const Posts = ({navigation}) => {
       <Header
         noBackButton
         withFilter
-        title="Daftar Post"
+        title="Daftar Kategori"
         onPressFilter={() => {
           alert('fitur filter');
         }}
@@ -89,7 +90,7 @@ export const Posts = ({navigation}) => {
                   key={index}
                   item={item}
                   onPress={() => {
-                    navigation.navigate('PostDetail', {id: item.id});
+                    navigation.navigate('CategoryDetail', {id: item.id});
                   }}
                 />
               );
@@ -102,9 +103,9 @@ export const Posts = ({navigation}) => {
 
       {/* Add button */}
       <FABList
-        label="Buat Postingan"
+        label="Buat Kategori"
         onPress={() => {
-          navigation.navigate('AddPost');
+          navigation.navigate('AddCategory');
         }}
       />
     </SafeAreaView>
@@ -114,15 +115,13 @@ export const Posts = ({navigation}) => {
 const ListItem = ({onPress, item}) => {
   return (
     <Card style={{marginTop: dimens.standard}} onPress={onPress}>
-      <Card.Cover source={{uri: 'https://picsum.photos/600'}} />
-      <Card.Title
-        title={item.title}
-        subtitle={`${item.get_category.name} / ${dayjs(item.updated_at).format(
-          'DD MMMM YYYY',
-        )}`}
-      />
+      <Card.Title title={item.name} />
       <Card.Content>
-        <Paragraph numberOfLines={3}>{item.description}</Paragraph>
+        <CardKeyValue keyName="Kode" value={item.code} />
+        <CardKeyValue
+          keyName="Terakhir diperbarui"
+          value={dayjs(item.updated_at).format('DD MMMM YYYY')}
+        />
       </Card.Content>
     </Card>
   );

@@ -1,12 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {ButtonFormSubmit, Gap, Header, InputText} from '../components';
-import {
-  color,
-  dimens,
-  master_pilihanles,
-  master_siswa,
-  PilihanLesType,
-} from '../constants';
+import {color, dimens} from '../constants';
 import {Controller, useForm} from 'react-hook-form';
 import {
   SafeAreaView,
@@ -17,8 +11,6 @@ import {
   Alert,
 } from 'react-native';
 import {Button, Menu, HelperText, Card} from 'react-native-paper';
-import {StackScreenProps} from '@react-navigation/stack';
-import {AppStackParamList} from '@routes/RouteTypes';
 import {apiGet, apiPost, getSingleDocument} from '../utils';
 
 export const AddPost = ({navigation, route}) => {
