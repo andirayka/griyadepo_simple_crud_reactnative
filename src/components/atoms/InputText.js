@@ -32,7 +32,7 @@ export const InputText = props => {
       <TextInput
         {...props}
         style={styles.textInputStyle}
-        secureTextEntry={!showPassword}
+        secureTextEntry={!showPassword && passwordMode}
         right={
           passwordMode && (
             <TextInput.Icon

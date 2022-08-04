@@ -9,14 +9,8 @@ import {
   SkeletonLoading,
 } from '../components';
 import {color, dimens} from '../constants';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  View,
-  ScrollView,
-} from 'react-native';
-import {Card, Chip, Paragraph} from 'react-native-paper';
+import {SafeAreaView, StatusBar, StyleSheet, ScrollView} from 'react-native';
+import {Card, Paragraph} from 'react-native-paper';
 import dayjs from 'dayjs';
 import {useIsFocused} from '@react-navigation/core';
 import {apiGet} from '../utils';

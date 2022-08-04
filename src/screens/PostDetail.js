@@ -22,11 +22,13 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {AppStackParamList} from '@routes/RouteTypes';
 import {apiGet, apiDelete} from '../utils';
 import dayjs from 'dayjs';
+import {useIsFocused} from '@react-navigation/native';
 
 export const PostDetail = ({navigation, route}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
   const [data, setData] = useState();
+  const isFocus = useIsFocused();
 
   useEffect(() => {
     let isActive = true;
@@ -43,14 +45,14 @@ export const PostDetail = ({navigation, route}) => {
       }
     };
 
-    if (isLoading) {
+    if (isLoading || isFocus) {
       getInitialData();
     }
 
     return () => {
       isActive = false;
     };
-  }, [isLoading, route.params.id]);
+  }, [isLoading, route.params.id, isFocus]);
 
   const deleteData = async () => {
     const {success} = await apiDelete({
@@ -134,7 +136,12 @@ export const PostDetail = ({navigation, route}) => {
           <Button
             labelStyle={{color: 'black'}}
             mode="outlined"
-            onPress={() => console.log('Pressed')}
+            onPress={() => {
+              navigation.navigate('AddPost', {
+                id: route.params.id,
+                postData: data,
+              });
+            }}
             style={{flex: 1}}
             contentStyle={{padding: dimens.medium}}>
             <MaterialCommunityIcons

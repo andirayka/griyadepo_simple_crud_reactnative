@@ -30,7 +30,7 @@
     "react-content-loader": "^6.0.3",
     "react-hook-form": "^7.12.2",
     "react-native": "0.69.3",
-    "react-native-document-picker": "^6.0.4",
+    "react-native-document-picker": "^8.1.1",
     "react-native-gesture-handler": "^2.5.0",
     "react-native-paper": "^4.12.4",
     "react-native-reanimated": "^2.9.1",

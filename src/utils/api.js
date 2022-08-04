@@ -10,12 +10,13 @@ const api = create({
 const source = CancelToken.source();
 
 // Post data to api
-export const apiPost = async ({url, payload, isLogin}) => {
+export const apiPost = async ({url, payload}) => {
   try {
     const {ok, data} = await api.post(url, payload, {
       cancelToken: source.token,
     });
 
+    console.log({data});
     // If success
     if (ok) {
       return {success: true, data: data.data};
