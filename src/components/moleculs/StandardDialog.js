@@ -1,17 +1,6 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {Button, Dialog, Paragraph, Portal} from 'react-native-paper';
-
-type Props = {
-  visible: boolean;
-  onDismiss?: () => void;
-  title: string;
-  description: string;
-  action1Text: string;
-  action2Text?: string;
-  onPressAction1: () => void;
-  onPressAction2?: () => void;
-};
-export const StandardDialog: FC<Props> = ({
+export const StandardDialog = ({
   visible,
   onDismiss,
   title,

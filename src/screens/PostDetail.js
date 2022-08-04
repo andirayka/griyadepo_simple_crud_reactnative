@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {ButtonFormSubmit, Gap, Header, SkeletonLoading} from '../components';
+import React, {useEffect, useState} from 'react';
+import {Gap, Header, SkeletonLoading, StandardDialog} from '../components';
 import {color, dimens} from '../constants';
 import {
   SafeAreaView,
@@ -20,12 +20,12 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {StackScreenProps} from '@react-navigation/stack';
 import {AppStackParamList} from '@routes/RouteTypes';
-import {AuthContext} from '../context/AuthContext';
-import {apiGet} from '../utils';
+import {apiGet, apiDelete} from '../utils';
 import dayjs from 'dayjs';
 
 export const PostDetail = ({navigation, route}) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -52,11 +52,35 @@ export const PostDetail = ({navigation, route}) => {
     };
   }, [isLoading, route.params.id]);
 
+  const deleteData = async () => {
+    const {success} = await apiDelete({
+      url: 'post/delete-data/' + route.params.id,
+    });
+    if (success) {
+      setIsDeleting(false);
+      navigation.goBack();
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.bg_grey} barStyle="dark-content" />
 
       <Header title="Detail Post" />
+
+      <StandardDialog
+        visible={!!isDeleting}
+        title={`Apakah Anda yakin akan menghapus post ini?`}
+        description="Data dihapus tidak bisa dikembalikan"
+        action1Text="batal"
+        onPressAction1={() => {
+          setIsDeleting(false);
+        }}
+        action2Text="yakin"
+        onPressAction2={() => {
+          deleteData();
+        }}
+      />
 
       <ScrollView
         contentContainerStyle={{flexGrow: 1, padding: dimens.standard}}>
@@ -95,7 +119,9 @@ export const PostDetail = ({navigation, route}) => {
           <Button
             labelStyle={{color: 'black'}}
             mode="outlined"
-            onPress={() => console.log('Pressed')}
+            onPress={() => {
+              setIsDeleting(true);
+            }}
             style={{flex: 1}}
             contentStyle={{padding: dimens.medium}}>
             <MaterialCommunityIcons
