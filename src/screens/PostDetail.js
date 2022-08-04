@@ -1,8 +1,23 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {ButtonFormSubmit, Gap, Header, SkeletonLoading} from '../components';
 import {color, dimens} from '../constants';
-import {SafeAreaView, StatusBar, StyleSheet, ScrollView} from 'react-native';
-import {Card, Divider, Subheading, Title, Paragraph} from 'react-native-paper';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+} from 'react-native';
+import {
+  Card,
+  Divider,
+  Subheading,
+  Title,
+  Paragraph,
+  Button,
+} from 'react-native-paper';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {StackScreenProps} from '@react-navigation/stack';
 import {AppStackParamList} from '@routes/RouteTypes';
 import {AuthContext} from '../context/AuthContext';
@@ -74,7 +89,37 @@ export const PostDetail = ({navigation, route}) => {
         )}
       </ScrollView>
 
-      {/* button */}
+      {/* Buttons */}
+      {!isLoading && (
+        <View style={{flexDirection: 'row', backgroundColor: 'white'}}>
+          <Button
+            labelStyle={{color: 'black'}}
+            mode="outlined"
+            onPress={() => console.log('Pressed')}
+            style={{flex: 1}}
+            contentStyle={{padding: dimens.medium}}>
+            <MaterialCommunityIcons
+              name="delete"
+              size={20}
+              style={{color: color.red}}
+            />
+            Hapus
+          </Button>
+          <Button
+            labelStyle={{color: 'black'}}
+            mode="outlined"
+            onPress={() => console.log('Pressed')}
+            style={{flex: 1}}
+            contentStyle={{padding: dimens.medium}}>
+            <MaterialCommunityIcons
+              name="book-edit-outline"
+              size={20}
+              style={{color: color.loading}}
+            />
+            Ubah
+          </Button>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
